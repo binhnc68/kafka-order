@@ -1,0 +1,27 @@
+logging:
+  pattern:
+    console: "[Kafka Order] %clr(%d{yyyy-MM-dd hh:mm:ss,SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx"
+
+server:
+  port: 9001
+  
+spring:
+  kafka:
+    listener:
+      missing-topics-fatal: false
+    producer:
+      bootstrap-servers:
+      - localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonDeserializer
+  main:
+    banner-mode: OFF
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test
+    username:
+    password:
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
